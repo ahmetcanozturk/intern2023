@@ -2,7 +2,7 @@ import os
 import cv2
 import numpy as np
 
-data_dir = os.path.join("C:", os.sep, "CanFiles", "Datasets", "VehicleColorsAll", "red")
+data_dir = os.path.join("C:", os.sep, "Datasets", "VehicleColorsAll", "red")
 image_file = os.path.join(data_dir, "0d98f6d8b4.jpg")
 # Load the image containing the vehicle
 image = cv2.imread(image_file)

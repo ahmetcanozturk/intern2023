@@ -8,7 +8,7 @@ from sklearn.preprocessing import StandardScaler
 from extractcolorfeaturesrgb import *
 
 # dataset in oldugu dizinleri okur
-data_dir = os.path.join("C:", os.sep, "CanFiles", "Datasets", "VehicleColorsAll")
+data_dir = os.path.join("C:", os.sep, "Datasets", "VehicleColorsAll")
 image_dirs = os.listdir(data_dir)
 
 images = []
