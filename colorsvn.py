@@ -52,6 +52,6 @@ svm_classifier.fit(X_train, y_train)
 # test seti uzerinde tahminlerde bulun
 y_pred = svm_classifier.predict(X_test)
 
-# dogrulugu hesapla
+# modeli degerlendir
 accuracy = accuracy_score(y_test, y_pred)
 print(f"Accuracy: {accuracy * 100:.2f}%")
