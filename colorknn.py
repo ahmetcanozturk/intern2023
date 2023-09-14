@@ -31,6 +31,11 @@ for folder in image_dirs:
             images.append(features)
             labels.append(folder)
 
+# daha az ornek sayisi icin
+size = int(len(images) * 0.5)
+images = images[0:size]
+labels = labels[0:size]
+
 # listeleri numpy dizilerine cevir
 X = np.array(images)
 y = np.array(labels)
@@ -44,7 +49,7 @@ X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 
 # KNN siniflandirici
-knn_classifier = KNeighborsClassifier(n_neighbors=5)  # You can adjust the number of neighbors as needed
+knn_classifier = KNeighborsClassifier(n_neighbors=5)
 
 # KNN modelini egit
 knn_classifier.fit(X_train, y_train)

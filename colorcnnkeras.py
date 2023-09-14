@@ -2,6 +2,7 @@ import os
 import cv2
 import numpy as np
 from sklearn import preprocessing
+from sklearn.model_selection import train_test_split
 from keras.utils import to_categorical
 from keras.preprocessing.image import ImageDataGenerator
 from keras.models import Sequential
@@ -36,6 +37,11 @@ for folder in image_dirs:
             images.append(image)
             labels.append(folder)
 
+# daha az ornek sayisi icin
+# size = int(len(images) * 0.5)
+# images = images[0:size]
+# labels = labels[0:size]
+
 X = np.array(images)
 y = np.array(labels)
 
@@ -43,7 +49,6 @@ y = np.array(labels)
 X = X.astype('float32') / 255.0
 
 # veri setini ayir
-from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # CNN modelini olustur
@@ -67,12 +72,14 @@ le = preprocessing.LabelEncoder()
 le.fit(y_test)
 y_test = to_categorical(le.transform(y_test), num_classes)
 
-# genisletme icin bir ImageDataGenerator olustur
+# genisletme icin bir ImageDataGenerator olustur# 
 datagen = ImageDataGenerator(rotation_range=10, width_shift_range=0.1, height_shift_range=0.1, shear_range=0.2, zoom_range=0.2, horizontal_flip=True)
 
 # genişletilmis verileri kullanarak modeli egit
+batch_size = 64
+num_epochs = 15
 datagen.fit(X_train)
-model.fit(datagen.flow(X_train, y_train, batch_size=32), steps_per_epoch=len(X_train) // 32, epochs=10)
+model.fit(datagen.flow(X_train, y_train, batch_size=batch_size), steps_per_epoch=len(X_train) // batch_size, epochs=num_epochs)
 
 # orijinal verileri kullanarak modeli egit
 # model.fit(X_train, y_train, epochs=10, batch_size=32, validation_data=(X_test, y_test))

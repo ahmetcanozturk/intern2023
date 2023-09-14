@@ -31,6 +31,11 @@ for folder in image_dirs:
             images.append(features)
             labels.append(folder)
 
+# daha az ornek sayisi icin
+size = int(len(images) * 0.5)
+images = images[0:size]
+labels = labels[0:size]
+
 # listeleri numpy dizilerine cevir
 X = np.array(images)
 y = np.array(labels)
