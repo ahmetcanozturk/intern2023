@@ -32,7 +32,7 @@ for folder in image_dirs:
             labels.append(folder)
 
 # daha az ornek sayisi icin
-size = int(len(images) * 0.5)
+size = int(len(images) * 0.25)
 images = images[0:size]
 labels = labels[0:size]
 
